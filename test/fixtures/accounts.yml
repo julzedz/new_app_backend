@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  savings_account: 9.99
+  investment_account: 9.99
+  earnings: 9.99
+  stakes: 9.99
+
+two:
+  savings_account: 9.99
+  investment_account: 9.99
+  earnings: 9.99
+  stakes: 9.99
