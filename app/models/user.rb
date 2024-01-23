@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_one :user_account_link
+  has_one :account, through: :user_account_link
+
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true
   validates :first_name, presence: true

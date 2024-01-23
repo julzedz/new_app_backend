@@ -10,9 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_23_150339) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_23_161602) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.decimal "savings_account"
+    t.decimal "investment_account"
+    t.decimal "earnings"
+    t.decimal "stakes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_account_links", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_user_account_links_on_account_id"
+    t.index ["user_id"], name: "index_user_account_links_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.integer "user_id"
@@ -32,4 +50,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_23_150339) do
     t.virtual "address", type: :text, as: "((((city || ', '::text) || state) || ', '::text) || country)", stored: true
   end
 
+  add_foreign_key "user_account_links", "accounts"
+  add_foreign_key "user_account_links", "users"
 end
